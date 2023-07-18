@@ -46,8 +46,6 @@ const Dashboard = () => {
     setLoading(false);
   };
 
-  console.log("->>", seriesData2);
-
   useEffect(() => {
     if (currentUser) {
       getAllData();
