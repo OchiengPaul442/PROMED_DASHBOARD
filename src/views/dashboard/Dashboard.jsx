@@ -9,6 +9,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [seriesData, setSeriesData] = useState([]);
+  const [seriesData2, setSeriesData2] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
   const auth = getAuth();
@@ -35,13 +36,36 @@ const Dashboard = () => {
     setLoading(false);
   };
 
+  const getAllData2 = async () => {
+    const q = await getDocs(collection(db, "ResultHistory"));
+    const data = q.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    const filteredData = data.filter((item) => item.id === currentUser.uid);
+    setSeriesData2(filteredData);
+    setLoading(false);
+  };
+
+  console.log("->>", seriesData2);
+
   useEffect(() => {
     if (currentUser) {
       getAllData();
+      getAllData2();
     }
   }, [currentUser]);
 
-  const series = [
+  // depression
+  const seriesDepressionOld = [
+    {
+      name: "Severity",
+      data: seriesData2[0]?.Depression
+        ? seriesData2[0]?.Depression.answers
+        : [],
+    },
+  ];
+
+  const seriesDepressionNew = [
     {
       name: "Severity",
       data: seriesData[0]?.Depression ? seriesData[0]?.Depression.answers : [],
@@ -61,7 +85,15 @@ const Dashboard = () => {
     },
   };
 
-  const series2 = [
+  // anxiety
+  const seriesAnxietyOld = [
+    {
+      name: "Severity",
+      data: seriesData2[0]?.Anxiety ? seriesData2[0]?.Anxiety.answers : [],
+    },
+  ];
+
+  const seriesAnxietyNew = [
     {
       name: "Severity",
       data: seriesData[0]?.Anxiety ? seriesData[0]?.Anxiety.answers : [],
@@ -81,7 +113,14 @@ const Dashboard = () => {
     },
   };
 
-  const series3 = [
+  // ptsd
+  const seriesPTSDOld = [
+    {
+      name: "Severity",
+      data: seriesData2[0]?.PTSD ? seriesData2[0]?.PTSD.answers : [],
+    },
+  ];
+  const seriesPTSDNew = [
     {
       name: "Severity",
       data: seriesData[0]?.PTSD ? seriesData[0]?.PTSD.answers : [],
@@ -150,7 +189,7 @@ const Dashboard = () => {
                   </h2>
                   <Chart
                     options={options}
-                    series={series}
+                    series={seriesDepressionNew}
                     type="line"
                     height={300}
                     width={600}
@@ -163,7 +202,7 @@ const Dashboard = () => {
                   </h2>
                   <Chart
                     options={options}
-                    series={series}
+                    series={seriesDepressionOld}
                     type="line"
                     height={300}
                     width={600}
@@ -187,7 +226,7 @@ const Dashboard = () => {
                   </h2>
                   <Chart
                     options={options2}
-                    series={series2}
+                    series={seriesAnxietyNew}
                     type="line"
                     height={300}
                     width={600}
@@ -200,7 +239,7 @@ const Dashboard = () => {
                   </h2>
                   <Chart
                     options={options2}
-                    series={series2}
+                    series={seriesAnxietyOld}
                     type="line"
                     height={300}
                     width={600}
@@ -224,7 +263,7 @@ const Dashboard = () => {
                   </h2>
                   <Chart
                     options={options3}
-                    series={series3}
+                    series={seriesPTSDNew}
                     type="area"
                     height={300}
                     width={600}
@@ -237,7 +276,7 @@ const Dashboard = () => {
                   </h2>
                   <Chart
                     options={options3}
-                    series={series3}
+                    series={seriesPTSDOld}
                     type="area"
                     height={300}
                     width={600}
