@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
@@ -8,11 +8,8 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await signInWithEmailAndPassword(getAuth(), email, password);
-
-      setEmail("");
-      setPassword("");
-
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
       window.location.href = "/dashboard";
     } catch (error) {
       console.error(error);
@@ -66,23 +63,7 @@ const Login = () => {
             required
           />
         </div>
-        <div className="flex items-start mb-6">
-          <div className="flex items-center h-5">
-            <input
-              id="remember"
-              type="checkbox"
-              value=""
-              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-blue-light focus:border-blue-light block w-full p-2.5 dark:bg-gray-dark dark:border-gray-dark dark:focus:ring-blue-dark dark:focus:border-blue-dark"
-              required
-            />
-          </div>
-          <label
-            htmlFor="remember"
-            className="ml-2 text-sm font-medium text-gray-dark dark:text-white"
-          >
-            Remember me
-          </label>
-        </div>
+
         <button
           type="submit"
           style={{

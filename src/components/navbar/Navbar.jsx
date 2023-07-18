@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/icons/logo.png";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 const Navbar = ({ setShowSidebar }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleLogout = async () => {
     try {
@@ -16,6 +17,20 @@ const Navbar = ({ setShowSidebar }) => {
       console.log(error);
     }
   };
+
+  const auth = getAuth();
+
+  React.useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        setCurrentUser(user);
+      } else {
+        // User is signed out
+        setCurrentUser(null);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -61,7 +76,11 @@ const Navbar = ({ setShowSidebar }) => {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="w-8 h-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1626128665085-483747621778"
+                      src={
+                        currentUser
+                          ? currentUser?.photoURL
+                          : "https://i.pravatar.cc/150?img=68"
+                      }
                       alt="Neil Sims"
                     />
                   </button>
@@ -77,13 +96,13 @@ const Navbar = ({ setShowSidebar }) => {
                       className="text-sm text-gray-900 dark:text-white"
                       role="none"
                     >
-                      Neil Sims
+                      {currentUser ? currentUser?.displayName : ""}
                     </p>
                     <p
                       className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
                       role="none"
                     >
-                      neil.sims@flowbite.com
+                      {currentUser ? currentUser?.email : ""}
                     </p>
                   </div>
                   <ul className="py-1" role="none">
