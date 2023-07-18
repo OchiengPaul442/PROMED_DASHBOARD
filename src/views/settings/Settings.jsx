@@ -5,7 +5,7 @@ const Settings = () => {
   return (
     <Page>
       <div className="p-4 sm:ml-64">
-        <p>settings world</p>
+        <p>Feature/screen coming soon!!!</p>
       </div>
     </Page>
   );

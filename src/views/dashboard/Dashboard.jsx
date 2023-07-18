@@ -53,6 +53,8 @@ const Dashboard = () => {
     }
   }, [currentUser]);
 
+  console.log(seriesData);
+
   // depression
   const seriesDepressionOld = [
     {
@@ -185,6 +187,15 @@ const Dashboard = () => {
                     Depression insights
                     <span style={{ color: "orange" }}> (New Test Results)</span>
                   </h2>
+                  <div>
+                    <h3 className="text-xl pb-4 font-semibold text-orange-700">
+                      Test Score: {seriesData[0]?.Depression?.score.toFixed(0)}%
+                    </h3>
+                    <p className="text-lg pb-4 font-semibold text-red-700">
+                      Diagnosis: (
+                      {seriesData[0]?.Depression?.response.prediction})
+                    </p>
+                  </div>
                   <Chart
                     options={options}
                     series={seriesDepressionNew}
@@ -198,6 +209,16 @@ const Dashboard = () => {
                     Depression insights
                     <span style={{ color: "orange" }}> (Old Test Results)</span>
                   </h2>
+                  <div>
+                    <h3 className="text-xl pb-4 font-semibold text-orange-700">
+                      Test Score: {seriesData2[0]?.Depression?.score.toFixed(0)}
+                      %
+                    </h3>
+                    <p className="text-lg pb-4 font-semibold text-red-700">
+                      Diagnosis: (
+                      {seriesData2[0]?.Depression?.response.prediction})
+                    </p>
+                  </div>
                   <Chart
                     options={options}
                     series={seriesDepressionOld}
@@ -222,6 +243,15 @@ const Dashboard = () => {
                     Anxiety insights{" "}
                     <span style={{ color: "orange" }}> (New Test Results)</span>
                   </h2>
+                  <div>
+                    <h3 className="text-xl pb-4 font-semibold text-orange-700">
+                      Test Score: {seriesData[0]?.Anxiety?.score.toFixed(0)}%
+                    </h3>
+                    <p className="text-lg pb-4 font-semibold text-red-700">
+                      Diagnosis: (
+                      {seriesData[0]?.Anxiety?.response.severity_level})
+                    </p>
+                  </div>
                   <Chart
                     options={options2}
                     series={seriesAnxietyNew}
@@ -235,6 +265,15 @@ const Dashboard = () => {
                     Anxiety insights{" "}
                     <span style={{ color: "orange" }}> (Old Test Results)</span>
                   </h2>
+                  <div>
+                    <h3 className="text-xl pb-4 font-semibold text-orange-700">
+                      Test Score: {seriesData2[0]?.Anxiety?.score.toFixed(0)}%
+                    </h3>
+                    <p className="text-lg pb-4 font-semibold text-red-700">
+                      Diagnosis: (
+                      {seriesData2[0]?.Anxiety?.response.severity_level})
+                    </p>
+                  </div>
                   <Chart
                     options={options2}
                     series={seriesAnxietyOld}
@@ -259,6 +298,15 @@ const Dashboard = () => {
                     PTSD insights{" "}
                     <span style={{ color: "orange" }}> (New Test Results)</span>
                   </h2>
+                  <div>
+                    <h3 className="text-xl pb-4 font-semibold text-orange-700">
+                      Test Score:{" "}
+                      {seriesData[0]?.PTSD?.response.percentage.toFixed(0)}%
+                    </h3>
+                    <p className="text-lg pb-4 font-semibold text-red-700">
+                      Diagnosis: ({seriesData[0]?.PTSD?.response.message})
+                    </p>
+                  </div>
                   <Chart
                     options={options3}
                     series={seriesPTSDNew}
@@ -272,6 +320,15 @@ const Dashboard = () => {
                     PTSD insights{" "}
                     <span style={{ color: "orange" }}> (Old Test Results)</span>
                   </h2>
+                  <div>
+                    <h3 className="text-xl pb-4 font-semibold text-orange-700">
+                      Test Score:{" "}
+                      {seriesData2[0]?.PTSD?.response.percentage.toFixed(0)}%
+                    </h3>
+                    <p className="text-lg pb-4 font-semibold text-red-700">
+                      Diagnosis: ({seriesData2[0]?.PTSD?.response.message})
+                    </p>
+                  </div>
                   <Chart
                     options={options3}
                     series={seriesPTSDOld}
