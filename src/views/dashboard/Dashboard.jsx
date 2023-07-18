@@ -135,42 +135,114 @@ const Dashboard = () => {
         ) : (
           <>
             {seriesData[0]?.Depression && (
-              <div>
-                <h2 className="text-2xl pb-4 font-semibold text-green-700">
-                  Depression insights
-                </h2>
-                <Chart
-                  options={options}
-                  series={series}
-                  type="line"
-                  height={500}
-                />
+              <div
+                style={{
+                  marginBottom: "50px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <div>
+                  <h2 className="text-2xl pb-4 font-semibold text-green-700">
+                    Depression insights
+                    <span style={{ color: "orange" }}> (New Test Results)</span>
+                  </h2>
+                  <Chart
+                    options={options}
+                    series={series}
+                    type="line"
+                    height={300}
+                    width={600}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl pb-4 font-semibold text-green-700">
+                    Depression insights
+                    <span style={{ color: "orange" }}> (Old Test Results)</span>
+                  </h2>
+                  <Chart
+                    options={options}
+                    series={series}
+                    type="line"
+                    height={300}
+                    width={600}
+                  />
+                </div>
               </div>
             )}
             {seriesData[0]?.Anxiety && (
-              <div>
-                <h2 className="text-2xl pb-4 font-semibold text-green-700">
-                  Anxiety insights
-                </h2>
-                <Chart
-                  options={options2}
-                  series={series2}
-                  type="line"
-                  height={500}
-                />
+              <div
+                style={{
+                  marginBottom: "50px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <div>
+                  <h2 className="text-2xl pb-4 font-semibold text-green-700">
+                    Anxiety insights{" "}
+                    <span style={{ color: "orange" }}> (New Test Results)</span>
+                  </h2>
+                  <Chart
+                    options={options2}
+                    series={series2}
+                    type="line"
+                    height={300}
+                    width={600}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl pb-4 font-semibold text-green-700">
+                    Anxiety insights{" "}
+                    <span style={{ color: "orange" }}> (Old Test Results)</span>
+                  </h2>
+                  <Chart
+                    options={options2}
+                    series={series2}
+                    type="line"
+                    height={300}
+                    width={600}
+                  />
+                </div>
               </div>
             )}
             {seriesData[0]?.PTSD && (
-              <div>
-                <h2 className="text-2xl pb-4 font-semibold text-green-700">
-                  PTSD insights
-                </h2>
-                <Chart
-                  options={options3}
-                  series={series3}
-                  type="area"
-                  height={500}
-                />
+              <div
+                style={{
+                  marginBottom: "50px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <div>
+                  <h2 className="text-2xl pb-4 font-semibold text-green-700">
+                    PTSD insights{" "}
+                    <span style={{ color: "orange" }}> (New Test Results)</span>
+                  </h2>
+                  <Chart
+                    options={options3}
+                    series={series3}
+                    type="area"
+                    height={300}
+                    width={600}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl pb-4 font-semibold text-green-700">
+                    PTSD insights{" "}
+                    <span style={{ color: "orange" }}> (Old Test Results)</span>
+                  </h2>
+                  <Chart
+                    options={options3}
+                    series={series3}
+                    type="area"
+                    height={300}
+                    width={600}
+                  />
+                </div>
               </div>
             )}
           </>

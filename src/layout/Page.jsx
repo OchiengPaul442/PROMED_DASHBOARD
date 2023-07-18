@@ -9,7 +9,7 @@ function Page({ children }) {
       <Navbar setShowSidebar={() => setShowSidebar(!showSidebar)} />
       <Sidebar Sidebar={showSidebar} />
       <div className="p-4">
-        <div className="p-4  mt-14 max-w-7xl mx-auto">
+        <div className="p-4  mt-14 max-w-full mx-auto">
           <div className="sm:ml-64">{children}</div>
         </div>
       </div>
